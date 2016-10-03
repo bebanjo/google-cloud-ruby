@@ -60,13 +60,12 @@ module Google
           fields.map(&:name).map(&:to_sym)
         end
 
-        ##
-        # Retreive a fields by name.
-        def field name
-          f = fields.find { |fld| fld.name == name.to_s }
-          return nil if f.nil?
-          yield f if block_given?
-          f
+        # Build a schema instance
+        #
+        # @return [Google::Cloud::Bigquery::Schema] Returns a fresh schema
+        #   instance
+        def self.build
+          from_gapi nil
         end
 
         ##
